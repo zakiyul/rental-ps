@@ -8,29 +8,29 @@ import javax.swing.table.DefaultTableModel;
 public class DataControl {
     
     private ArrayList<Data> list = new ArrayList();
-    private String[] header = {"No KTP", "Nama", "Tipe PS", "Durasi","Total Bayar"};
+    private String[] header = {"Id", "Nama", "Tipe PS", "Durasi","Total Bayar"};
     
     public void read(JTable tabel){
         DefaultTableModel dtm = new DefaultTableModel(null, header);
         
         for (int i = 0; i < list.size(); i++){
             Object[] obj = new Object[5];
-            obj[0] = list.get(i).getNo_KTP();
+            obj[0] = list.get(i).getId();
             obj[1] = list.get(i).getNama();
             obj[2] = list.get(i).getTipe_PS();
-            obj[3] = 0 + list.get(i).getDurasi() + " Hari";
+            obj[3] = 0 + list.get(i).getDurasi() + " Jam";
             if(list.get(i).getTipe_PS().equalsIgnoreCase("ps 5")){
-                obj[4] ="Rp "+ 50000 * list.get(i).getDurasi();
+                obj[4] ="Rp "+ 5000 * list.get(i).getDurasi();
             }else if(list.get(i).getTipe_PS().equalsIgnoreCase("ps 4")){
-                obj[4] ="Rp "+ 40000 * list.get(i).getDurasi();
+                obj[4] ="Rp "+ 4000 * list.get(i).getDurasi();
             }else if(list.get(i).getTipe_PS().equalsIgnoreCase("ps 3")){
-                obj[4] ="Rp "+ 30000 * list.get(i).getDurasi();
+                obj[4] ="Rp "+ 3000 * list.get(i).getDurasi();
             }else if(list.get(i).getTipe_PS().equalsIgnoreCase("psp")){
-                obj[4] ="Rp "+ 25000 * list.get(i).getDurasi();
+                obj[4] ="Rp "+ 2500 * list.get(i).getDurasi();
             }else if(list.get(i).getTipe_PS().equalsIgnoreCase("ps 2")){
-                obj[4] ="Rp "+ 20000 * list.get(i).getDurasi();
+                obj[4] ="Rp "+ 2000 * list.get(i).getDurasi();
             }else {
-                obj[4] ="Rp "+ 10000 * list.get(i).getDurasi();
+                obj[4] ="Rp "+ 1000 * list.get(i).getDurasi();
             } 
             dtm.addRow(obj);
         }
@@ -45,7 +45,7 @@ public class DataControl {
     
     public void update(Data data){
         for(int i = 0; i < list.size();i++){
-            if(data.getNo_KTP() == list.get(i).getNo_KTP()){
+            if(data.getId() == list.get(i).getId()){
                 list.set(i, data);
             }
         }
@@ -53,25 +53,22 @@ public class DataControl {
     
     public void delete(int id){
         for(int i=0;i < list.size();i++){
-            if(id == list.get(i).getNo_KTP()){
-                System.out.println(list.get(i).getNo_KTP());
-                System.out.println(list.get(i).getNama());
-                System.out.println(list.get(i).getDurasi());
+            if(id == list.get(i).getId()){
                 list.remove(i);
             }
         }
     }
     
-    public void search(JTable tbl, int IdBrng){
+    public void search(JTable tbl, String nama){
         DefaultTableModel dtm = new DefaultTableModel(null, header);
         
         for(int i = 0; i < list.size(); i++){
-            if(IdBrng == list.get(i).getNo_KTP()){
+            if(nama.equalsIgnoreCase(list.get(i).getNama())){
                 Object[] obj = new Object[5];
-                obj[0] = list.get(i).getNo_KTP();
+                obj[0] = list.get(i).getId();
                 obj[1] = list.get(i).getNama();
                 obj[2] = list.get(i).getTipe_PS();
-                obj[3] = list.get(i).getDurasi();
+                obj[3] = list.get(i).getDurasi() + " Jam";
                 if(list.get(i).getTipe_PS().equalsIgnoreCase("ps 5")){
                     obj[4] ="Rp "+ 50000 * list.get(i).getDurasi();
                 }else if(list.get(i).getTipe_PS().equalsIgnoreCase("ps 4")){

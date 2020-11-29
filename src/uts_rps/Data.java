@@ -1,17 +1,17 @@
 package uts_rps;
 
 public class Data {
-    private int no_KTP;
+    private int id;
     private String nama;
     private String tipe_PS;
     private int durasi;
 
-    public int getNo_KTP() {
-        return no_KTP;
+    public int getId() {
+        return id;
     }
 
-    public void setNo_KTP(int no_KTP) {
-        this.no_KTP = no_KTP;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNama() {
